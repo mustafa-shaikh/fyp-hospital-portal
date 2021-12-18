@@ -1,9 +1,8 @@
 export const Role = {
-    Admin: 'Admin',
-    User: 'User'    
+    Hospital: 'Hospital'
 }
 
 export const Status  = {
-    Approved: 'approved',
-    Unapproved : 'unapproved',
+    Authorized: 'authorized',
+    Unauthorized : 'unauthorized',
 }

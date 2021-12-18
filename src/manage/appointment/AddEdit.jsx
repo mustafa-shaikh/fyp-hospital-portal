@@ -10,10 +10,9 @@ function AddEdit({ history, match }) {
     const isAddMode = !id;
 
     const initialValues = {
-        title: '',
         firstName: '',
         lastName: '',
-        accountStatus: '',
+        hospitalStatus: '',
         email: '',
         role: '',
         password: '',
@@ -21,13 +20,11 @@ function AddEdit({ history, match }) {
     };
 
     const validationSchema = Yup.object().shape({
-        title: Yup.string()
-            .required('Title is required'),
         firstName: Yup.string()
             .required('First Name is required'),
         lastName: Yup.string()
             .required('Last Name is required'),
-        accountStatus: Yup.string()
+        hospitalStatus: Yup.string()
             .required('Status is required'),
         email: Yup.string()
             .email('Email is invalid')
@@ -84,7 +81,7 @@ function AddEdit({ history, match }) {
                     if (!isAddMode) {
                         // get user and set form fields
                         accountService.getById(id).then(user => {
-                            const fields = ['title', 'firstName', 'lastName', 'accountStatus', 'email', 'role'];
+                            const fields = ['firstName', 'lastName', 'hospitalStatus', 'email', 'role'];
                             fields.forEach(field => setFieldValue(field, user[field], false));
                         });
                     }
@@ -94,17 +91,6 @@ function AddEdit({ history, match }) {
                     <Form>
                         <h1>{isAddMode ? 'Add User' : 'Edit User'}</h1>
                         <div className="form-row">
-                            <div className="form-group col">
-                                <label>Title</label>
-                                <Field name="title" as="select" className={'form-control' + (errors.title && touched.title ? ' is-invalid' : '')}>
-                                    <option value=""></option>
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Miss">Miss</option>
-                                    <option value="Ms">Ms</option>
-                                </Field>
-                                <ErrorMessage name="title" component="div" className="invalid-feedback" />
-                            </div>
                             <div className="form-group col-5">
                                 <label>First Name</label>
                                 <Field name="firstName" type="text" className={'form-control' + (errors.firstName && touched.firstName ? ' is-invalid' : '')} />
@@ -133,12 +119,12 @@ function AddEdit({ history, match }) {
                             </div>
                             <div className="form-group col">
                                 <label>Status</label>
-                                <Field name="accountStatus" as="select" className={'form-control' + (errors.accountStatus && touched.accountStatus ? ' is-invalid' : '')}>
+                                <Field name="hospitalStatus" as="select" className={'form-control' + (errors.hospitalStatus && touched.hospitalStatus ? ' is-invalid' : '')}>
                                     <option value=""></option>
-                                    <option value="unapproved">Unapproved</option>
-                                    <option value="approved">Approved</option>
+                                    <option value="unauthorized">Unauthorized</option>
+                                    <option value="authorized">Authorized</option>
                                 </Field>
-                                <ErrorMessage name="accountStatus" component="div" className="invalid-feedback" />
+                                <ErrorMessage name="hospitalStatus" component="div" className="invalid-feedback" />
                             </div>
                         </div>
                         {!isAddMode &&
