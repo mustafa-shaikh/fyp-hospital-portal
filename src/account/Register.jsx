@@ -53,7 +53,7 @@ function Register({ history }) {
         <>
         <div className="sidebar-logo text-left">
                     <h1 className="fs-2 fw-bold">E-Health</h1>
-                    <h6 className="fs-6 text-right fst-italic">Hospitals's Portal</h6>
+                    <h6 className="fs-6 text-right fst-italic">Hospital's Portal</h6>
                 </div>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
             {({ errors, touched, isSubmitting }) => (
