@@ -23,9 +23,9 @@ function List({ match }) {
 
     return (
         <div>
-            <h1>Users</h1>
+            <h1>History</h1>
             {/* <p>All users from secure (admin only) api end point:</p> */}
-            <Link to={`${path}/add`} className="btn btn-sm btn-success mb-2">Add User</Link>
+            {/* <Link to={`${path}/add`} className="btn btn-sm btn-success mb-2">Add User</Link> */}
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -44,10 +44,10 @@ function List({ match }) {
                         </tr>
                     ) :
                             (<tr key={user.id}>
-                            <td>{user.title} {user.firstName} {user.lastName}</td>
+                            <td>{user.firstName} {user.lastName}</td>
                             <td>{user.email}</td>
                             <td>{user.role}</td>
-                            <td>{user.accountStatus}</td>
+                            <td>{user.hospitalStatus}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link to={`${path}/edit/${user.id}`} className="btn btn-sm btn-primary mr-1">Edit</Link>
                                 {/* <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger" style={{ width: '60px' }} disabled={user.isDeleting}>

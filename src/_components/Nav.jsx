@@ -22,13 +22,13 @@ function Nav() {
             <div className="sidebar-container">
                 <div className="sidebar-logo text-left">
                     <h2 className="fs-2 fw-bold">E-Health</h2>
-                    <h6 className="fs-6 fst-italic">Doctor's Portal</h6>
+                    <h6 className="fs-6 fst-italic">Hospitals's Portal</h6>
                 </div>
                     <div className="fa fa-home">
-                        {user.accountStatus === Status.Approved &&
+                        {user.hospitalStatus === Status.Authorized &&
                             <p className="bg-success text-center" disabled ><br/></p>
                         }
-                        {user.accountStatus === Status.Unapproved &&
+                        {user.hospitalStatus === Status.Unauthorized &&
                             <p className="bg-danger text-center" disabled >Access Unauthorized</p>
                         }
                     </div>
@@ -39,21 +39,20 @@ function Nav() {
                         <NavLink to="/profile" className="fluid-container">
                             <img src={profilePic} className="rounded float-left"  alt="" width="35%" height="35%" />
                             <p className="text-center">{user.firstName} {user.lastName}</p>
-                            <p className="text-center">{user.role }</p>
                         </NavLink>
                         </li>
                     <li>
                         <NavLink exact to="/" className="fa fa-home">Dashboard</NavLink>
                     </li>
-                    {user.role === Role.Admin &&
+                    {user.hospitalStatus === Status.Authorized &&
                         <li>
-                            <NavLink to="/admin" className="fa fa-tachometer">Admin</NavLink>
+                            <NavLink to="/manage" className="fa fa-tachometer">Manage</NavLink>
                         </li>
                     }
                     <li>
                         <a onClick={accountService.logout} className="fa fa-tachometer">Logout</a>
                     </li>
-                    <Route path="/admin" component={AdminNav} />
+                    <Route path="/manage" component={AdminNav} />
                 </ul>
             </div >
         </div >
@@ -68,7 +67,16 @@ function AdminNav({ match }) {
             <div className="sidebar-navigation">
                 <li className="header"></li>
                 <li>
-                    <NavLink to={`${path}/users`} className="fa fa-tachometer">Users</NavLink>
+                    <NavLink to={`${path}/doctor`} className="fa fa-tachometer">Doctor</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`${path}/appointment`} className="fa fa-tachometer">Appointment</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`${path}/payment`} className="fa fa-tachometer">Payment</NavLink>
+                </li>
+                <li>
+                    <NavLink to={`${path}/history`} className="fa fa-tachometer">History</NavLink>
                 </li>
             </div>
         </nav>

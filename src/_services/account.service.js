@@ -4,7 +4,7 @@ import config from 'config';
 import { fetchWrapper, history } from '@/_helpers';
 
 const userSubject = new BehaviorSubject(null);
-const baseUrl = `${config.apiUrl}/doctor`;
+const baseUrl = `${config.apiUrl}/hospital`;
 
 export const accountService = {
     login,
@@ -30,7 +30,6 @@ function login(email, password) {
             // publish user to subscribers and start timer to refresh token
             userSubject.next(user);
             startRefreshTokenTimer();
-            console.log(user);
             return user;
         });
 }
